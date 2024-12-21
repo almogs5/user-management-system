@@ -98,8 +98,6 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 
 # JPA/Hibernate settings
 spring.jpa.hibernate.ddl-auto=update  # Use 'update' in development, 'validate' or 'none' in production
-spring.jpa.show-sql=true  # Show SQL queries for debugging
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect  # Use PostgreSQL dialect
 ```
 ---
 
