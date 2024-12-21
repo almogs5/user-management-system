@@ -94,10 +94,9 @@ In the `src/main/resources/application.yaml` file, update the database connectio
 spring.datasource.url=jdbc:postgresql://localhost:5432/user_db  # Replace with your database URL
 spring.datasource.username=postgres  # Your PostgreSQL username
 spring.datasource.password=yourpassword  # Your PostgreSQL password
-spring.datasource.driver-class-name=org.postgresql.Driver
 
 # JPA/Hibernate settings
-spring.jpa.hibernate.ddl-auto=update  # Use 'update' in development, 'validate' or 'none' in production
+spring.jpa.hibernate.ddl-auto=update  # Use 'update' in development
 ```
 ---
 
