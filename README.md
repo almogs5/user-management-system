@@ -4,18 +4,6 @@ This project is a backend system for managing and viewing user information and s
 
 The system is built using **Java Spring Boot**, **Maven**, **JPA with Hibernate ORM**, and a **PostgreSQL** database.
 
-## Table of Contents
-1. [Prerequisites](#prerequisites)
-2. [Project Setup](#project-setup)
-3. [Building the Application](#building-the-application)
-4. [Running the Application Locally](#running-the-application-locally)
-5. [Configuring PostgreSQL Database](#configuring-postgresql-database)
-6. [API Endpoints](#api-endpoints)
-7. [Error Handling and Logging](#error-handling-and-logging)
-8. [Caching](#caching)
-19. [Health Check](#health-check)
----
-
 ## 1. Prerequisites
 
 Before you can build and run the application locally, you will need the following tools and software installed:
