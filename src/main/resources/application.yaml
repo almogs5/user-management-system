@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: user-management-system
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres #change the url
+#    username: ${DB_USERNAME} # get from the environment values file
+    username: postgres # change
+#    password: ${DB_PASSWORD} # get from the environment values/secrets file
+    password: Awd123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=30m
+logging:
+  level:
+    root: INFO
+    com.example.usermanagementsystem: INFO
+    org.springframework.web: INFO
+    org.hibernate: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, env, info
+  simple:
+    metrics:
+      export:
+        enabled: true
