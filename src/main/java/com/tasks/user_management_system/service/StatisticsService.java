@@ -16,16 +16,6 @@ public class StatisticsService {
     private final AtomicLong totalRequests = new AtomicLong(0);
     private final DoubleAdder totalRequestTime = new DoubleAdder();
 
-
-//
-//    public Timer.Sample startTimer() {
-//        return Timer.start();
-//    }
-//
-//    public void stopTimer(Timer.Sample sample) {
-//        sample.stop(requestLatencyTimer);
-//    }
-
     public void recordRequest() {
         totalRequests.incrementAndGet();
     }
