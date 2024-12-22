@@ -3,10 +3,8 @@ spring:
     name: user-management-system
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres #change the url
-#    username: ${DB_USERNAME} # get from the environment values file
-    username: postgres # change
-#    password: ${DB_PASSWORD} # get from the environment values/secrets file
-    password: Awd123456
+    username: ${DB_USERNAME} # get from the environment values file
+    password: ${DB_PASSWORD} # get from the environment values/secrets file
   jpa:
     hibernate:
       ddl-auto: update
