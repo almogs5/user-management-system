@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: User Management API
+  description: API for managing users and viewing system statistics
+  version: 1.0.0
+  contact:
+    name: Almog Sarafian
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Users
+    description: User management operations
+  - name: Statistics
+    description: System statistics and metrics
+paths:
+  /api/v1/users/login:
+    post:
+      tags:
+        - Users
+      summary: Login user
+      description: Authenticate a user
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                schema:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/users/signup:
+    post:
+      tags:
+        - Users
+      summary: Register new user
+      description: Create a new user account
+      operationId: signUp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input or username already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/users:
+    get:
+      tags:
+        - Users
+      summary: Get all users
+      description: Retrieve a list of all users
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: List of users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /api/v1/users/{userId}/status:
+    patch:
+      tags:
+        - Users
+      summary: Update user status
+      description: Update the status of a specific user
+      operationId: updateStatus
+      parameters:
+        - name: userEmail
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/users/statistics:
+    get:
+      tags:
+        - Statistics
+      summary: Get system statistics
+      description: Retrieve system statistics including user counts and request metrics
+      operationId: getStatistics
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatisticsResponse'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "asd@gmail.com"
+        password:
+          type: string
+          minLength: 6
+          format: password
+          example: "securePassword123"
+        status:
+          type: string
+          example: "ACTIVE"
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "asd@gmail.com"
+        password:
+          type: string
+          format: password
+          example: "securePassword123"
+
+    StatisticsResponse:
+      type: object
+      properties:
+        totalUsers:
+          type: integer
+          format: int64
+          example: 150
+        totalRequests:
+          type: integer
+          format: int64
+          example: 1500
+        averageRequestTime:
+          type: number
+          format: double
+          example: 125.5
+
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+          example: 400
+        error:
+          type: string
+          example: "Bad Request"
+        message:
+          type: string
+          example: "Invalid input"
