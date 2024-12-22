@@ -14,5 +14,5 @@ public class ConstantsUtil {
     public static final String ERROR = "error";
 
     // user status
-    public static final String ACTIVE_STATUS = "active";
+    public static final String ACTIVE_STATUS = "ACTIVE";
 }
